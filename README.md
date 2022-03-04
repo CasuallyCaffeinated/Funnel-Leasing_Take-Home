@@ -34,17 +34,12 @@
 
 #### The data is returned in this format:
 
-#### ```
-
-#### {
-
-#### "altitude": 156.9098300562505,
-
-#### "last_updated": "2022-03-04T21:13:00"
-
-#### }
-
-#### ```
+```
+{
+"altitude": 156.9098300562505,
+"last_updated": "2022-03-04T21:13:00"
+}
+```
 
 #### last_updated is an ISO 8601 representation of the last time the data was updated and altitude is the altitude of the satellite in kilometers.
 
