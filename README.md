@@ -1,6 +1,6 @@
 # Funnel Leasing Coding Challenge
 
-### Christian Cozma
+## Project work by: Christian Cozma
 
 ---
 
