@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import healthStatus from '../utils/healthCheck';
-import { satelliteData } from '../api/getData';
+import { altitudesDataArray } from '../api/getData';
 
 const health = async (req: Request, res: Response) => {
-	if (satelliteData.length) {
-		const satelliteHealth: string = healthStatus(satelliteData);
+	if (altitudesDataArray.length) {
+		const satelliteHealth: string = healthStatus(altitudesDataArray);
 		res.send(JSON.stringify(satelliteHealth));
 	}
 };
