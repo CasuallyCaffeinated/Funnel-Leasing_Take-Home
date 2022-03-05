@@ -1,12 +1,15 @@
 import { Request, Response } from 'express';
-import healthStatus from '../utils/healthCheck';
-import { altitudesDataArray } from '../api/getData';
+import getHealthStatus, { appStateStats } from '../api/getData';
 
-const health = async (req: Request, res: Response) => {
-	if (altitudesDataArray.length) {
-		const satelliteHealth: string = healthStatus(altitudesDataArray);
-		res.send(JSON.stringify(satelliteHealth));
-	}
+const healthRouter = async (req: Request, res: Response) => {
+    if (appStateStats.altitudesDataArray.length) {
+        const satelliteHealth: string = getHealthStatus(
+            appStateStats.altitudesDataArray
+        );
+        res.send(JSON.stringify(satelliteHealth));
+    } else {
+        res.send(JSON.stringify(`Error: No data`));
+    }
 };
 
-export default health;
+export default healthRouter;
