@@ -1,11 +1,11 @@
 {
-	"compilerOptions": {
-		"target": "es2017",
-		"module": "commonjs",
-		"outDir": "dist",
-		"sourceMap": true,
-		"esModuleInterop": true
-	},
-	"include": ["**/*.ts"],
-	"exclude": ["node_modules", "test/**/*.ts"]
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true,
+        "esModuleInterop": true
+    },
+    "include": ["/**/*.ts"],
+    "exclude": ["node_modules", "test/**/*.ts"]
 }

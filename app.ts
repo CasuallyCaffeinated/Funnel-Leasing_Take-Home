@@ -2,7 +2,7 @@ import express from 'express';
 import routerIdx from './routes/index';
 import statsRouter from './routes/stats';
 import healthRouter from './routes/health';
-import { initSatelliteDataService } from './api/getData';
+import { initSatelliteDataService } from './api/satelliteData.service';
 
 initSatelliteDataService();
 
