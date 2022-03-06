@@ -1,9 +1,9 @@
+import fetch from 'node-fetch';
+import getAvgOfArray from '../utils/avg.util';
 import { URL } from './apiUrl';
 import { Satellite } from '../types/satellite.type';
 import { healthConstants } from '../constants/healthStatuses';
 import { SatelliteState } from '../types/satelliteState.type';
-import getAvgOfArray from '../utils/avg.util';
-import fetch from 'node-fetch';
 
 export const satelliteState: SatelliteState = {
     altitudesDataArray: [],
@@ -54,7 +54,7 @@ export async function setAltitudesArray(): Promise<void> {
     }
 }
 
-const setHealthStatus = (altitudeAvg: number[]): void => {
+export const setHealthStatus = (altitudeAvg: number[]): void => {
     // Destructuring constants
     const { WARNING, SUSTAINED, OK } = healthConstants;
 
