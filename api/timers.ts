@@ -1,4 +1,4 @@
-import { satelliteState } from '../api/satelliteData.service';
+import { satelliteState } from './satelliteData.service';
 
 export const startSustainedTimer = () => {
     satelliteState.sustainedTimerRunning = true;
