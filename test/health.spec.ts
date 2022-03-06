@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { setHealthStatus } from '../api/satelliteData.service';
 import { satelliteState } from '../api/satelliteData.service';
-import getAvgOfArray from '../utils/avg.util';
+import { getAvgFromArray } from '../utils/avg.util';
 
 const ALTITUDE_OK_ARRAY = [161, 161, 161, 162, 165, 175, 176];
 const WARNING_MSG_ARRAY = [150, 151, 152, 153, 154, 155];
@@ -18,7 +18,7 @@ describe('#getAvgFromArray()', () => {
     it('given an array of nums, when calling getAvgFromArray(), then return avg of all nums in array', () => {
         const avgNumber: number = 3;
 
-        const avgCheck = getAvgOfArray(AVG_ARRAY);
+        const avgCheck = getAvgFromArray(AVG_ARRAY);
         expect(avgCheck).to.equal(avgNumber);
     });
 });
