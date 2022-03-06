@@ -1,5 +1,5 @@
-export default interface Stats {
-	minimum?: number;
-	maximum?: number;
-	average?: number;
-}
+export type Stats = {
+    minimum?: number;
+    maximum?: number;
+    average?: number;
+};

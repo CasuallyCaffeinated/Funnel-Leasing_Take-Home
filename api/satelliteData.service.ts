@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { startSustainedTimer, clearSustainedTimer } from '../utils/timers.util';
+import { startSustainedTimer, clearSustainedTimer } from './timers';
 import { getAvgFromArray } from '../utils/avg.util';
 import { setStandbyStatus } from '../utils/standbyStatus.util';
 import { URL } from './apiUrl';
@@ -29,15 +29,15 @@ export const initSatelliteDataService = () => {
  */
 export async function setAltitudesArray(): Promise<void> {
     try {
-        // Await the API object.
+        // Await the JSON API object.
         const apiDataObject = await getSatelliteData();
 
         // Check to make sure there is an altitude value.
         if (apiDataObject.altitude) {
-            if (satelliteState.altitudesDataArray.length < 3) {
+            if (satelliteState.altitudesDataArray.length < 30) {
                 // if there's <= 5 minutes of data.
                 satelliteState.altitudesDataArray.push(apiDataObject.altitude);
-            } else if (satelliteState.altitudesDataArray.length >= 3) {
+            } else if (satelliteState.altitudesDataArray.length >= 30) {
                 // if >= 5 minutes of data, remove first element of array, and push the new element.
                 satelliteState.altitudesDataArray
                     .splice(0, 1)
