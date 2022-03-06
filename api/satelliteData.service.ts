@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import getAvgOfArray from '../utils/avg.util';
+import { setStandbyStatus } from '../utils/standbyStatus.util';
 import { URL } from './apiUrl';
 import { Satellite } from '../types/satellite.type';
 import { healthConstants } from '../constants/healthStatuses';
@@ -58,30 +59,35 @@ export const setHealthStatus = (altitudeAvg: number[]): void => {
     // Destructuring constants
     const { WARNING, SUSTAINED, OK } = healthConstants;
 
-    // Get one minute worth of data
-    const lastSixValues: number[] = [...altitudeAvg.slice(-6)];
+    // If array.length has 6 entries or more, a minute has passed.
+    if (altitudeAvg.length >= 6) {
+        // Get one minute worth of data
+        const lastSixValues: number[] = [...altitudeAvg.slice(-6)];
 
-    const avgofSixValues = getAvgOfArray(lastSixValues);
+        const avgofSixValues = getAvgOfArray(lastSixValues);
 
-    if (avgofSixValues < 160) {
-        satelliteState.inOrbitalDecayInLastMinute = true;
+        if (avgofSixValues < 160) {
+            satelliteState.inOrbitalDecayInLastMinute = true;
 
-        if (satelliteState.sustainedTimerRunning) clearSustainedTimer();
+            if (satelliteState.sustainedTimerRunning) clearSustainedTimer();
 
-        satelliteState.satelliteHealthStatus = WARNING;
-        return;
-    }
-
-    if (satelliteState.inOrbitalDecayInLastMinute) {
-        if (!satelliteState.sustainedTimerRunning) {
-            startSustainedTimer();
+            satelliteState.satelliteHealthStatus = WARNING;
+            return;
         }
 
-        satelliteState.satelliteHealthStatus = SUSTAINED;
-        return;
-    }
+        if (satelliteState.inOrbitalDecayInLastMinute) {
+            if (!satelliteState.sustainedTimerRunning) {
+                startSustainedTimer();
+            }
 
-    satelliteState.satelliteHealthStatus = OK;
+            satelliteState.satelliteHealthStatus = SUSTAINED;
+            return;
+        }
+
+        satelliteState.satelliteHealthStatus = OK;
+    } else {
+        setStandbyStatus(altitudeAvg);
+    }
 };
 
 const startSustainedTimer = () => {
