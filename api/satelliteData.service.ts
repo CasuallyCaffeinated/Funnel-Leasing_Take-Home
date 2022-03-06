@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import getAvgOfArray from '../utils/avg.util';
+import { getAvgFromArray } from '../utils/avg.util';
 import { URL } from './apiUrl';
 import { Satellite } from '../types/satellite.type';
 import { healthConstants } from '../constants/healthStatuses';
@@ -61,7 +61,7 @@ export const setHealthStatus = (altitudeAvg: number[]): void => {
     // Get one minute worth of data
     const lastSixValues: number[] = [...altitudeAvg.slice(-6)];
 
-    const avgofSixValues = getAvgOfArray(lastSixValues);
+    const avgofSixValues = getAvgFromArray(lastSixValues);
 
     if (avgofSixValues < 160) {
         satelliteState.inOrbitalDecayInLastMinute = true;

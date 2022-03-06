@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { setHealthStatus } from '../api/satelliteData.service';
 import { satelliteState } from '../api/satelliteData.service';
-import getAvgFromArray from '../utils/avg.util';
+import { getAvgFromArray } from '../utils/avg.util';
 
 const ALTITUDE_OK_ARRAY = [161, 161, 161, 162, 165, 175, 176];
 const WARNING_MSG_ARRAY = [150, 151, 152, 153, 154, 155];
