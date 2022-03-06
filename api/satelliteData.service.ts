@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { startSustainedTimer, clearSustainedTimer } from '../utils/timers.util';
 import { getAvgFromArray } from '../utils/avg.util';
 import { setStandbyStatus } from '../utils/standbyStatus.util';
 import { URL } from './apiUrl';
@@ -88,21 +89,6 @@ export const setHealthStatus = (altitudeAvg: number[]): void => {
     } else {
         setStandbyStatus(altitudeAvg);
     }
-};
-
-const startSustainedTimer = () => {
-    satelliteState.sustainedTimerRunning = true;
-    const timer = setTimeout(() => {
-        satelliteState.inOrbitalDecayInLastMinute = false;
-        satelliteState.sustainedTimerRunning = false;
-    }, 60000);
-
-    satelliteState.sustainedTimer = timer;
-};
-
-const clearSustainedTimer = () => {
-    satelliteState.sustainedTimerRunning = false;
-    clearTimeout(satelliteState.sustainedTimer);
 };
 
 /**
