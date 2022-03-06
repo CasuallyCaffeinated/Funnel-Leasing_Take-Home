@@ -8,23 +8,23 @@
 
 ## How to get started:
 
-- #### Run `git clone https://github.com/CasuallyCaffeinated/Funnel-Leasing_Take-Home.git`
-- #### cd into repository
-- #### Run `npm install` to install the dependencies
-- #### Run `npm run start:dev` to start the server
-- #### Open up a browser and navigate to either:
-  - #### `localhost:8081/api/satellite/stats`
-  - #### `localhost:8081/api/satellite/health`
-- #### For test cases, run the command:
-  - #### `npm run test:dev`
+-   #### Run `git clone https://github.com/CasuallyCaffeinated/Funnel-Leasing_Take-Home.git`
+-   #### cd into repository
+-   #### Run `npm install` to install the dependencies
+-   #### Run `npm run start:dev` to start the server
+-   #### Open up a browser and navigate to either:
+    -   #### `localhost:8081/api/satellite/stats`
+    -   #### `localhost:8081/api/satellite/health`
+-   #### For test cases, run the command:
+    -   #### `npm run test:dev`
 
 ---
 
 ## Technologies used:
 
-- #### Node.js with Typescript
-- #### Express.js with Typescript
-- #### Mocha and Chai for testing
+-   #### Node.js with Typescript
+-   #### Express.js with Typescript
+-   #### Mocha and Chai for testing
 
 ---
 
@@ -53,13 +53,13 @@
 
 ### /stats end-point:
 
-- #### Returns the minimum, maximum and average altitude for the last 5 minutes.
-- #### Don’t worry about persisting data beyond the life of the process -- if you don’t have 5 minutes of data when the end-point is requested, return the stats for what you do have.
+-   #### Returns the minimum, maximum and average altitude for the last 5 minutes.
+-   #### If you don’t have 5 minutes of data when the end-point is requested, return the stats for what you do have.
 
 ### /health end-point:
 
-- #### Whenever the 5 minute average altitude of the satellite goes below 160km for more than 1 minute, returns the message “WARNING: RAPID ORBITAL DECAY IMMINENT”
-- #### Once the average altitude of the satellite returns to 160km or above, return the message “Sustained Low Earth Orbit Resumed” for 1 minute.
-- #### Otherwise return the message “Altitude is A-OK”
+-   #### Whenever the average altitude of the satellite over the last minute goes below 160km, this endpoint returns the message “WARNING: RAPID ORBITAL DECAY IMMINENT”
+-   #### Once the average altitude of the satellite over the last minute returns to 160km or above, return the message “Sustained Low Earth Orbit Resumed” for 1 minute.
+-   #### Otherwise return the message “Altitude is A-OK”
 
 ---
