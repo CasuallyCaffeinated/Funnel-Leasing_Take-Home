@@ -1,4 +1,4 @@
-import getAvgOfArray from './avg.util';
+import { getAvgFromArray } from './avg.util';
 import { healthConstants } from '../constants/healthStatuses';
 import { satelliteState } from '../api/satelliteData.service';
 
@@ -9,12 +9,12 @@ export const setStandbyStatus = (altitudesArray: number[]): void => {
 
     if (
         altitudeArrayValues.length > 0 &&
-        getAvgOfArray(altitudeArrayValues) >= 160
+        getAvgFromArray(altitudeArrayValues) >= 160
     ) {
         satelliteState.satelliteHealthStatus = OK;
     } else if (
         altitudeArrayValues.length > 0 &&
-        getAvgOfArray(altitudeArrayValues) < 160
+        getAvgFromArray(altitudeArrayValues) < 160
     ) {
         satelliteState.satelliteHealthStatus = WARNING;
     } else {
