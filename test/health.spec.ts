@@ -1,11 +1,13 @@
 import { expect } from 'chai';
-import { setHealthStatus } from '../api/satelliteData.service';
+import {
+    getSatelliteData,
+    setHealthStatus,
+} from '../api/satelliteData.service';
 import { satelliteState } from '../api/satelliteData.service';
 import { getAvgFromArray } from '../utils/avg.util';
 import { setAltitudesArray } from '../api/satelliteData.service';
 
 const ALTITUDE_OK_ARRAY_1 = [161, 161, 161, 162, 165, 175, 176];
-const ALTITUDE_OK_ARRAY_2 = [165, 163, 159, 165, 170, 171, 169];
 const WARNING_MSG_ARRAY = [150, 151, 152, 153, 154, 155];
 const SUSTAINED_MSG_ARRAY = [150, 152, 162, 160, 163, 190];
 const AVG_ARRAY = [1, 2, 3, 4, 5];
@@ -63,7 +65,6 @@ describe('#setHealthStatus()', () => {
         // Function called:
         if (!satelliteState.inOrbitalDecayInLastMinute) {
             setHealthStatus(ALTITUDE_OK_ARRAY_1);
-            setHealthStatus(ALTITUDE_OK_ARRAY_2);
             expect(satelliteState.satelliteHealthStatus).to.equal(
                 altitudeStringOK
             );
@@ -72,8 +73,15 @@ describe('#setHealthStatus()', () => {
 });
 
 describe('#setAltitudesArray()', () => {
-    it("given that the API returns a JSON object, \nwhen calling setAltitudesArray(), then satelliteState's altitudesDataArray gets the altitude", async () => {
+    it("given that the API returns a JSON object, when calling setAltitudesArray(),\nthen satelliteState's altitudesDataArray gets the altitude", async () => {
         await setAltitudesArray();
         expect(satelliteState.altitudesDataArray).to.have.length(1);
+    });
+});
+
+describe('#getSatelliteData()', () => {
+    it("given the requirement to receive a response as a JSON object, when calling getSatelliteData(),\nthen I should return a JSON object with the keys 'altitude' and 'last_updated'", async () => {
+        const data = await getSatelliteData();
+        expect(data).to.contain.keys('altitude', 'last_updated');
     });
 });
