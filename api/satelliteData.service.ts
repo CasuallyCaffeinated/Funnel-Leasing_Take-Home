@@ -7,12 +7,12 @@ import { healthConstants } from '../constants/healthStatuses';
 import { SatelliteState } from '../types/satelliteState.type';
 
 export const satelliteState: SatelliteState = {
-    altitudesDataArray: [],
     altitudeAvg: undefined,
+    altitudesDataArray: [],
+    inOrbitalDecayInLastMinute: false,
     satelliteHealthStatus: undefined,
     sustainedTimer: undefined,
     sustainedTimerRunning: false,
-    inOrbitalDecayInLastMinute: false,
 };
 
 export const initSatelliteDataService = () => {
