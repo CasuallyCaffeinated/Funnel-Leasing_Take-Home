@@ -1,8 +1,8 @@
 export type SatelliteState = {
-    altitudesDataArray: number[];
     altitudeAvg: undefined | number;
+    altitudesDataArray: number[];
     inOrbitalDecayInLastMinute: undefined | boolean;
     satelliteHealthStatus: undefined | string;
-    sustainedTimerRunning: undefined | boolean;
     sustainedTimer: undefined | NodeJS.Timeout;
+    sustainedTimerRunning: undefined | boolean;
 };
